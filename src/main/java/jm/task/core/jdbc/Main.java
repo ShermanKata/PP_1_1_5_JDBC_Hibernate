@@ -8,6 +8,6 @@ public class Main {
         // реализуйте алгоритм здесь
         UserService userService = new UserServiceImpl();
         //userService.createUsersTable();
-        userService.dropUsersTable();
+        //userService.dropUsersTable();
     }
 }
