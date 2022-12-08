@@ -12,7 +12,8 @@ public class Util {
 
     private static Connection connection;
 
-    static {
+
+    public static Connection getConnection() {
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             connection.setAutoCommit(false);
@@ -21,9 +22,6 @@ public class Util {
             e.printStackTrace();
             System.err.println("Не удалось подключиться к БД");
         }
-    }
-
-    public static Connection getConnection() {
         return connection;
     }
 }
