@@ -14,7 +14,7 @@ public class UserDaoJDBCImpl implements UserDao {
     private final String INSERT_USER = "INSERT INTO Users (id, name, lastName, age) VALUES (?, ?, ?, ?)";
     private final String DELETE_USER = "DELETE FROM Users WHERE id = ?";
     private final String SELECT_ALL_USERS = "SELECT * FROM Users";
-    private final ThreadLocal<String> CLEAN_USERS = ThreadLocal.withInitial(() -> "DELETE FROM Users");
+    private final String CLEAN_USERS = "DELETE FROM Users";
 
 
     private static long countId;
@@ -87,7 +87,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void cleanUsersTable() {
         try (Statement statement = connection.createStatement()) {
-            statement.executeUpdate(CLEAN_USERS.get());
+            statement.executeUpdate(CLEAN_USERS);
             connection.commit();
         } catch (SQLException e) {
             try {
