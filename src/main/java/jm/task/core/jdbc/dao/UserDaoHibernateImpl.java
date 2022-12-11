@@ -50,10 +50,9 @@ public class UserDaoHibernateImpl implements UserDao {
         Transaction transaction = null;
         try (Session session = Util.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            User user = new User(name, lastName, age);
-            session.save(user);
+            session.save(new User(name, lastName, age));
             transaction.commit();
-            System.out.println(user);
+            System.out.printf("Пользователь с именем %s добавлен в базу данных\n", name);
         } catch (Exception e) {
             transaction.rollback();
             e.printStackTrace();
