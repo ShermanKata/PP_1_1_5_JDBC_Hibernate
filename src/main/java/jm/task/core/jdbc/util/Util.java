@@ -21,13 +21,15 @@ public class Util {
 
 
     public static Connection getConnection() {
-        try {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            connection.setAutoCommit(false);
-            System.out.println("Установлено соединение с БД");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.err.println("Не удалось подключиться к БД");
+        if (connection == null) {
+            try {
+                connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+                connection.setAutoCommit(false);
+                System.out.println("Установлено соединение с БД");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.err.println("Не удалось подключиться к БД");
+            }
         }
         return connection;
     }
